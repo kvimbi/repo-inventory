@@ -13,6 +13,11 @@ npm install
 npm run app
 ```
 
+AI chat and guidance review are optional. To configure a provider, copy
+`.env.example` to `.env` and fill in either the Gemini or Bedrock credential;
+never commit the populated `.env` file. The desktop settings screen can also
+store provider settings in the local application configuration.
+
 For development with hot reload:
 ```bash
 npm run app:dev
