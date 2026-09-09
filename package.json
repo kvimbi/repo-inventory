@@ -1,0 +1,78 @@
+{
+  "name": "repo-inventory",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist-electron/main.js",
+  "description": "Pluggable inventory + dashboard for a folder full of repositories",
+  "scripts": {
+    "scan": "node bin/inventory.ts scan",
+    "report": "node bin/inventory.ts report",
+    "serve": "node --env-file-if-exists=.env bin/inventory.ts serve",
+    "build:web": "vite build",
+    "build:electron": "vite build --config vite.electron.config.ts",
+    "build:icons": "node scripts/generate-icons.js",
+    "build": "npm run build:icons && vite build && vite build --config vite.electron.config.ts",
+    "dev": "node --env-file-if-exists=.env bin/inventory.ts dev",
+    "app": "node bin/inventory.ts app",
+    "app:dev": "node --env-file-if-exists=.env bin/inventory.ts app-dev",
+    "package:app": "npm run build && electron-builder",
+    "mcp": "node bin/mcp.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test server/guidanceReview.test.ts server/agentTools/contracts.test.ts server/agentTools/discovery.test.ts server/agentTools/resources.test.ts server/agentTools/mcp.test.ts server/sessionHistory/sessionHistory.test.ts server/agentTools/integration.test.ts"
+  },
+  "build": {
+    "appId": "com.repoinventory.app",
+    "productName": "Repo Inventory",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*",
+      "build/icon.png",
+      "build/icon.icns",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "icon": "build/icon.icns",
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "win": {
+      "icon": "build/icon.ico"
+    },
+    "linux": {
+      "icon": "build/icon.png"
+    }
+  },
+  "dependencies": {
+    "@ai-sdk/amazon-bedrock": "^5.0.76",
+    "@ai-sdk/google": "^4.0.41",
+    "@ai-sdk/mcp": "^2.0.30",
+    "@fastify/static": "^8.2.0",
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "ai": "^7.0.59",
+    "dompurify": "^3.4.12",
+    "fastify": "^5.6.1",
+    "json5": "^2.2.3",
+    "marked": "^18.0.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.14",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.1",
+    "@vitejs/plugin-react": "^5.1.0",
+    "electron": "^43.4.0",
+    "electron-builder": "^26.15.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tailwindcss": "^4.1.14",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.1"
+  }
+}

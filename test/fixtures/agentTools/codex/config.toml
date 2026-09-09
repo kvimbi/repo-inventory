@@ -1,0 +1,19 @@
+# Synthetic Codex Global Configuration
+# Used for testing native discovery and TOML parser contracts
+
+[mcp_servers.filesystem]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-filesystem", "/Users/synthetic/code"]
+env = { DEBUG = "false" }
+
+[mcp_servers.memory]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-memory"]
+
+[plugins."openai@skills"]
+enabled = true
+source = "bundled"
+
+[projects."/Users/synthetic/code/repo-inventory"]
+trust = true
+model = "gpt-4o"

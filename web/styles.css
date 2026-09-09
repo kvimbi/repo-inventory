@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+@theme {
+  --color-surface: #0d1117;
+  --color-panel: #161b22;
+  --color-panel-hover: #1c2128;
+  --color-border: #30363d;
+  --color-border-subtle: #21262d;
+  --color-ink: #e6edf3;
+  --color-muted: #8b949e;
+  --color-critical: #f85149;
+  --color-warn: #d29922;
+  --color-info: #58a6ff;
+  --color-good: #3fb950;
+  --color-accent: #a371f7;
+}
+
+html, body, #root { height: 100%; }
+body {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Electron desktop app draggable window regions */
+.app-drag {
+  -webkit-app-region: drag;
+  user-select: none;
+}
+.app-no-drag {
+  -webkit-app-region: no-drag;
+}
+
+/* Indeterminate progress bar animation */
+@keyframes indeterminate-progress {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(250%); }
+}
+.animate-indeterminate {
+  animation: indeterminate-progress 1.6s ease-in-out infinite;
+}
+
+/* Custom scrollbars for a clean dark aesthetic */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #484f58;
+}
+
+/* Button & interactive affordances */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+  user-select: none;
+}
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.btn-primary {
+  background: #1f6beb;
+  color: #ffffff;
+  border: 1px solid #388bfd;
+}
+.btn-primary:hover {
+  background: #2563eb;
+  border-color: #58a6ff;
+  box-shadow: 0 0 8px rgba(56, 139, 253, 0.3);
+}
+.btn-secondary {
+  background: #21262d;
+  color: #c9d1d9;
+  border: 1px solid #30363d;
+}
+.btn-secondary:hover {
+  background: #30363d;
+  color: #f0f6fc;
+  border-color: #8b949e;
+}
+.btn-ghost {
+  background: transparent;
+  color: #8b949e;
+  border: 1px solid transparent;
+}
+.btn-ghost:hover {
+  background: #21262d;
+  color: #e6edf3;
+}
+.btn-chip {
+  background: #161b22;
+  color: #8b949e;
+  border: 1px solid #30363d;
+  border-radius: 9999px;
+}
+.btn-chip:hover {
+  background: #21262d;
+  color: #58a6ff;
+  border-color: #58a6ff;
+}
+
+/* Form controls */
+.input-control, .select-control {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  color: #e6edf3;
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.input-control:focus, .select-control:focus {
+  outline: none;
+  border-color: #58a6ff;
+  box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.2);
+}
+
+/* Rendered markdown inside DocViewerModal. */
+.prose-doc h1, .prose-doc h2, .prose-doc h3, .prose-doc h4 {
+  font-weight: 600;
+  margin-top: 1.2em;
+  margin-bottom: 0.4em;
+}
+.prose-doc h1 { font-size: 1.3em; border-bottom: 1px solid var(--color-border); padding-bottom: 0.3em; }
+.prose-doc h2 { font-size: 1.15em; border-bottom: 1px solid var(--color-border); padding-bottom: 0.3em; }
+.prose-doc h3 { font-size: 1.05em; }
+.prose-doc p, .prose-doc ul, .prose-doc ol, .prose-doc blockquote, .prose-doc pre, .prose-doc table {
+  margin-bottom: 0.8em;
+}
+.prose-doc ul, .prose-doc ol { padding-left: 1.4em; }
+.prose-doc li { margin-bottom: 0.2em; }
+.prose-doc a { color: var(--color-info); text-decoration: underline; }
+.prose-doc code {
+  background: var(--color-surface);
+  border-radius: 3px;
+  padding: 0.1em 0.3em;
+  font-size: 0.85em;
+}
+.prose-doc pre {
+  background: var(--color-surface);
+  border-radius: 4px;
+  padding: 0.8em;
+  overflow-x: auto;
+}
+.prose-doc pre code { background: none; padding: 0; }
+.prose-doc blockquote {
+  border-left: 2px solid var(--color-border);
+  padding-left: 0.8em;
+  color: var(--color-muted);
+}
+.prose-doc table { border-collapse: collapse; width: 100%; }
+.prose-doc th, .prose-doc td {
+  border: 1px solid var(--color-border);
+  padding: 0.3em 0.6em;
+  text-align: left;
+}
+.prose-doc hr { border: none; border-top: 1px solid var(--color-border); margin: 1em 0; }
+.prose-doc img { max-width: 100%; }

@@ -1,0 +1,23 @@
+{
+  // Claude Desktop configuration fixture
+  "mcpServers": {
+    "sqlite": {
+      "command": "uvx",
+      "args": [
+        "mcp-server-sqlite",
+        "--db-path",
+        "/tmp/synthetic.db",
+      ],
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-brave-search",
+      ],
+      "env": {
+        "BRAVE_API_KEY": "synthetic_brave_key",
+      },
+    },
+  },
+}
