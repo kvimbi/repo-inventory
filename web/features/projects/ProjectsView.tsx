@@ -222,17 +222,19 @@ export function ProjectsView({ onHeaderStateChange, registerRescanHandler, selec
 
   const handleAnnotationSaved = useCallback(
     (project: Project) => {
-      if (!inventory) return;
-      const idx = inventory.projects.findIndex((p) => p.id === project.id || p.path === project.path);
-      if (idx !== -1) return;
-      const newProjects = [...inventory.projects];
-      newProjects[idx] = project;
-      setInventory({ ...inventory, projects: newProjects });
+      setInventory((current) => {
+        if (!current) return current;
+        const idx = current.projects.findIndex((p) => p.id === project.id || p.path === project.path);
+        if (idx === -1) return current;
+        const newProjects = [...current.projects];
+        newProjects[idx] = project;
+        return { ...current, projects: newProjects };
+      });
       if (selectedId && selected && selected.path === project.path && selectedId !== project.id) {
         setSelectedId(project.id);
       }
     },
-    [inventory, selectedId, selected],
+    [selectedId, selected],
   );
 
   const handleBatchAnnotationSaved = useCallback(
